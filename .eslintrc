@@ -1,0 +1,52 @@
+{
+  "extends": ['airbnb',
+    'plugin:css-modules/recommended',
+    'prettier',
+    'prettier/flowtype',
+    'prettier/react',],
+  "plugins": ['flowtype', 'css-modules', 'prettier'],
+  "parser": "babel-eslint",
+    globals: {
+      __DEV__: true,
+    },
+  "parserOptions": {
+    "ecmaVersion": 2016,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": false
+  },
+  "rules": {
+    'import/no-extraneous-dependencies': ['error', { packageDir: '.' }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": <ignorePureComponents> }],
+    "arrow-body-style": [0],
+    "consistent-return": [0],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+            "components": [],
+            "specialLink": [ "hrefLeft", "hrefRight" ],
+            "aspects": [ "noHref", "invalidHref", "preferButton" ]
+          }],
+    "array-callback-return": [0],
+    "react/require-default-props": [0],
+    "no-shadow": [0],
+    "jsx-a11y/label-has-for": [0],
+    "no-nested-ternary": [0],
+    "no-console": "off",
+    "react/no-array-index-key": "off"
+  },
+  settings: {
+    // Allow absolute paths in imports, e.g. import Button from 'components/Button'
+    // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', 'src'],
+      },
+    },
+  },
+}
