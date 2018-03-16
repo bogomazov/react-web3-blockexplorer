@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import { routerReducer } from "react-router-redux";
+import { router } from "react-router-redux";
+import { blocks } from "./reducers/blocksReducer";
 
 export default combineReducers({
-  router: routerReducer,
+  router,
+  blocks,
 });

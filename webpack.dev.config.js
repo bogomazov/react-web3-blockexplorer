@@ -9,7 +9,8 @@ module.exports = {
   entry: {
     bundle: [
       "@babel/polyfill",
-      "webpack-hot-middleware/client?noInfo=false",
+      "react-hot-loader/patch",
+      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false",
       "./index.js",
     ],
   },
@@ -68,5 +69,6 @@ module.exports = {
       "process.env.NODE_ENV": JSON.stringify("development"),
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };

@@ -7,7 +7,16 @@ import { Provider } from "react-redux";
 import App from "./components/App";
 import history from "./history";
 import store from "./store";
+import getWeb3 from "./utils/getWeb3";
 
+getWeb3
+  .then(() => {
+    console.log("Web3 initialized!");
+  })
+  .catch(() => {
+    console.log("Error in web3 initialization.");
+  });
+console.log("sds");
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
