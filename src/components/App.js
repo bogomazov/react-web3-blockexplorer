@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import { Segment, Container } from "semantic-ui-css";
+import { Segment } from "semantic-ui-react";
 import BlocksComponent from "./BlocksComponent";
 
 class App extends Component {
   render() {
     return (
       <>
-        <Container textAlign="center" text>
-          <Segment>
-            <BlocksComponent />
-          </Segment>
-        </Container>
+        <Segment>
+          <BlocksComponent />
+        </Segment>
       </>
     );
   }
 }
 
-export default hot(App);
+export default hot(module)(App); //eslint-disable-line

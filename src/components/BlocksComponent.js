@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Step } from "semantic-ui-react";
 import { connect } from "react-redux";
-import Icon from "ethereum-blockies/react-component";
 import { getLastBlocks } from "../actions/blocks";
 
 class BlocksComponent extends Component {
@@ -14,14 +13,13 @@ class BlocksComponent extends Component {
     const { blocks } = this.props;
     return (
       <>
-        <Step.Group>
+        <Step.Group size="mini">
           {blocks.map(block => (
-            <Step>
-              <Icon />
+            <Step key={block.number}>
               <Step.Content>
                 <Step.Title>Block {block.number}</Step.Title>
                 <Step.Description>
-                  Choose your shipping options gcg
+                  {block.transactions.length} transactions
                 </Step.Description>
               </Step.Content>
             </Step>
