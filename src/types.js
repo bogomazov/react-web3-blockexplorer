@@ -1,3 +1,9 @@
+export const WEB3_INITIALIZED = "WEB3_INITIALIZED";
+export const INITIAL_BLOCK = "INITIAL_BLOCK";
 export const GET_LAST_BLOCKS = "GET_BLOCKS";
-export const GET_BLOCK = "GET_BLOCK";
+export const SELECT_BLOCK = "SELECT_BLOCK";
 export const GET_TRANSACTION = "GET_TRANSACTION";
+export const ADD_BLOCK = "ADD_BLOCK";
+export const NEXT_PAGE = "NEXT_PAGE";
+export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
+export const BLOCKS_PER_PAGE = 10;
