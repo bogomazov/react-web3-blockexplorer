@@ -9,6 +9,7 @@ import history from "./history";
 import store from "./store";
 import web3Init from "./utils/web3";
 
+// After web3 initialization rendering starts
 web3Init().then(() => {
   ReactDOM.render(
     <Provider store={store}>

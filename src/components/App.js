@@ -1,28 +1,45 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import { Segment, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
+import { Route, withRouter } from "react-router-dom";
 import BlocksComponent from "./BlocksComponent";
+import BlockInfoComponent from "./BlockInfoComponent";
+import TransactionsComponent from "./TransactionsComponent";
+import TransactionInfoComponent from "./TransactionInfoComponent";
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Grid
-          textAlign="center"
-          style={{ height: "100%" }}
-          verticalAlign="middle"
-        >
-          <Segment
-            style={{ padding: "8em 0em", width: "100%" }}
-            textAlign="center"
-          >
-            <BlocksComponent />
-          </Segment>
-          <Grid.Column />
-        </Grid>
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <Grid
+        textAlign="center"
+        style={{ height: "100%" }}
+        verticalAlign="middle"
+      >
+        <Grid.Row>
+          <BlocksComponent />
+        </Grid.Row>
+      </Grid>
+      <Grid column="equal">
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <Route path="/:block" component={BlockInfoComponent} />
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Route
+              path="/:block/transactions"
+              component={TransactionsComponent}
+            />
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Route
+              path="/:block/transactions/:transaction"
+              component={TransactionInfoComponent}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </>
+  );
+};
 
-export default hot(module)(App); //eslint-disable-line
+export default hot(module)(withRouter(App)); //eslint-disable-line

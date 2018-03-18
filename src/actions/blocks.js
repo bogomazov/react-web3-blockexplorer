@@ -1,19 +1,22 @@
 import _ from "lodash";
-import { push } from "react-router-redux";
 import {
   GET_LAST_BLOCKS,
   SELECT_BLOCK,
   ADD_BLOCK,
   NEXT_PAGE,
   PREVIOUS_PAGE,
+  BLOCKS_PER_PAGE,
 } from "../types";
 
-export const getLastBlocks = (amount = 10) => (dispatch, getState) => {
+// Fetching many blocks with afterloading logic of more and more blocks
+export const getLastBlocks = (amount = BLOCKS_PER_PAGE) => (
+  dispatch,
+  getState,
+) => {
   const state = getState();
   const { eth } = state.web3.web3Instance;
   const blocksFetched = state.blocks.blocksArr.length;
   const initialBlockNumber = state.web3.initialBlock;
-  console.log(initialBlockNumber);
   Promise.all(
     _.times(amount, i => eth.getBlock(initialBlockNumber - blocksFetched - i)),
   ).then(blocks => {
@@ -24,6 +27,7 @@ export const getLastBlocks = (amount = 10) => (dispatch, getState) => {
   });
 };
 
+// Action creator which dispatch action on every new block from network
 export const listenToNewBlocks = () => (dispatch, getState) => {
   const { eth } = getState().web3.web3Instance;
   eth
@@ -35,18 +39,18 @@ export const listenToNewBlocks = () => (dispatch, getState) => {
     });
 };
 
-export const nextPage = () => dispatch => {
-  dispatch({ type: NEXT_PAGE });
-};
+// Actions for pagination
+export const nextPage = () => ({ type: NEXT_PAGE });
 
-export const previousPage = () => dispatch => {
-  dispatch({ type: PREVIOUS_PAGE });
-};
+export const previousPage = () => ({ type: PREVIOUS_PAGE });
 
-export const selectBlock = block => dispatch => {
-  dispatch(push(block.hash));
-  dispatch({
-    type: SELECT_BLOCK,
-    payload: block,
-  });
+// Fetching blocks by one
+export const getBlock = blockHash => (dispatch, getState) => {
+  const { eth } = getState().web3.web3Instance;
+  eth.getBlock(blockHash).then(block =>
+    dispatch({
+      type: SELECT_BLOCK,
+      payload: block,
+    }),
+  );
 };

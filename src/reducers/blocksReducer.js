@@ -6,6 +6,7 @@ import {
   ADD_BLOCK,
 } from "../types";
 
+// The most complexed reducer for blocks logic
 export default (
   state = { blocksArr: [], selectedBlock: null, page: 1 },
   action,
