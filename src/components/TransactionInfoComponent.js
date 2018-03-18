@@ -5,13 +5,14 @@ import { Segment, Header, Table } from "semantic-ui-react";
 import getTransactions from "../actions/transactions";
 
 // Shows transaction details
-export class TransactionInfoComponent extends Component {
+class TransactionInfoComponent extends Component {
   componentDidMount() {
     this.props.getTransactions(this.props.match.params.transaction);
   }
 
   componentDidUpdate() {
-    this.props.getTransactions(this.props.match.params.transaction);
+    const { getTransactions, match } = this.props;
+    getTransactions(match.params.transaction);
   }
 
   render() {

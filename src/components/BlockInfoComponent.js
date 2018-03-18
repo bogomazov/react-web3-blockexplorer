@@ -12,7 +12,8 @@ class BlockInfoComponent extends Component {
   }
 
   componentDidUpdate() {
-    this.props.getBlock(this.props.match.params.block);
+    const { match, getBlock } = this.props;
+    getBlock(match.params.block);
   }
 
   render() {
@@ -45,41 +46,41 @@ class BlockInfoComponent extends Component {
                 <Table.Cell>Hash:</Table.Cell>
                 <Table.Cell>{block ? block.hash : null}</Table.Cell>
               </Table.Row>
+              <Table.Row>
+                <Table.Cell>GasLimit:</Table.Cell>
+                <Table.Cell>{block ? block.gasLimit : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>GasUsage:</Table.Cell>
+                <Table.Cell>{block ? block.gasUsed : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Hash:</Table.Cell>
+                <Table.Cell>{block ? block.hash : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Time:</Table.Cell>
+                <Table.Cell>{block ? block.timestamp : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Size:</Table.Cell>
+                <Table.Cell>{block ? block.size : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Extra:</Table.Cell>
+                <Table.Cell>{block ? block.extraData : null}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Transactions:</Table.Cell>
+                <Table.Cell>
+                  {block ? (
+                    <Link to={`/${block.hash}/transactions`}>
+                      {block.transactions.length} (Click to show all)
+                    </Link>
+                  ) : null}
+                </Table.Cell>
+              </Table.Row>
             </Table.Body>
-            <Table.Row>
-              <Table.Cell>GasLimit:</Table.Cell>
-              <Table.Cell>{block ? block.gasLimit : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>GasUsage:</Table.Cell>
-              <Table.Cell>{block ? block.gasUsed : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Hash:</Table.Cell>
-              <Table.Cell>{block ? block.hash : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Time:</Table.Cell>
-              <Table.Cell>{block ? block.timestamp : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Size:</Table.Cell>
-              <Table.Cell>{block ? block.size : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Extra:</Table.Cell>
-              <Table.Cell>{block ? block.extraData : null}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Transactions:</Table.Cell>
-              <Table.Cell>
-                {block ? (
-                  <Link to={`/${block.hash}/transactions`}>
-                    {block.transactions.length} (Click to show all)
-                  </Link>
-                ) : null}
-              </Table.Cell>
-            </Table.Row>
           </Table>
         </Segment>
       </>
@@ -88,7 +89,9 @@ class BlockInfoComponent extends Component {
 }
 
 BlockInfoComponent.propTypes = {
-  block: PropTypes.shape({}),
+  block: PropTypes.shape({
+    hash: PropTypes.string.isRequired,
+  }),
   getBlock: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

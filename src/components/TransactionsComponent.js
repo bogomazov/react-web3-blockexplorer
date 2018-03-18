@@ -5,7 +5,7 @@ import { Segment, Header, Table } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 // Shows all transactions of the block
-export const TransactionsComponent = ({ block }) => {
+const TransactionsComponent = ({ block }) => {
   if (!block) return null;
   return (
     <div>

@@ -10,7 +10,6 @@ import {
   listenToNewBlocks,
 } from "../actions/blocks";
 import { getVisibleBlocks } from "../selectors";
-import { BLOCK_PER_PAGE } from "../types";
 
 // Component which shows all blocks
 class BlocksComponent extends Component {
@@ -20,7 +19,7 @@ class BlocksComponent extends Component {
 
   render() {
     const { blocks, page, nextPage, previousPage, getLastBlocks } = this.props;
-    const isLoading = blocks.length < BLOCK_PER_PAGE;
+    const isLoading = blocks.length < 10;
     if (isLoading) getLastBlocks(); // If selected blocks are less than 10, this line will start fetching more block
     return (
       <>
