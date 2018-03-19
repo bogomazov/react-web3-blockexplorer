@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/register": "^7.0.0-beta.42",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "ethereum-blockies-png": "^0.1.2",
     "history": "^4.7.2",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.1",

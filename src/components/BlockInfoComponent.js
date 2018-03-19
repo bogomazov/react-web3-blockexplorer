@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Segment, Header, Table } from "semantic-ui-react";
+import { Segment, Header, Table, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import blockies from "ethereum-blockies-png";
 import { getBlock } from "../actions/blocks";
 
 // Component which shows block information
@@ -41,7 +42,16 @@ class BlockInfoComponent extends Component {
           style={{ overflow: "auto", maxHeight: 550 }}
         >
           <Header as="h2" textAlign="center">
-            Block #{block ? block.number : null}
+            {block ? (
+              <>
+                <Image
+                  inline
+                  rounded
+                  src={blockies.createDataURL({ seed: block.hash })}
+                />
+                Block #{block.number}
+              </>
+            ) : null}
           </Header>
           <Table compact size="small">
             <Table.Body>

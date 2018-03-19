@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Segment, Header, Table } from "semantic-ui-react";
+import { Segment, Header, Table, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import blockies from "ethereum-blockies-png";
 
 // Shows all transactions of the block
 const TransactionsComponent = ({ block }) => {
@@ -17,6 +18,12 @@ const TransactionsComponent = ({ block }) => {
           <Table.Body>
             {block.transactions.map((transaction, i) => (
               <Table.Row key={transaction}>
+                <Table.Cell>
+                  <Image
+                    avatar
+                    src={blockies.createDataURL({ seed: transaction })}
+                  />
+                </Table.Cell>
                 <Table.Cell>
                   <Link to={`/${block.number}/transactions/${i}`}>
                     {transaction}

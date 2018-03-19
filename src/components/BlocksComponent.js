@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Search, {
+import {
   Step,
   Segment,
   Menu,
   Transition,
   Input,
+  Image,
+  Header,
 } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { push } from "react-router-redux";
 import _ from "lodash";
+import blockies from "ethereum-blockies-png";
 import {
   getLastBlocks,
   nextPage,
@@ -46,6 +49,7 @@ class BlocksComponent extends Component {
           style={{ padding: "3em 0em", width: "100%" }}
           textAlign="center"
         >
+          <Header size="huge">REACT-WEB3-BLOCKEXPLORER</Header>
           <Segment style={{ padding: "0em 12em" }} textAlign="right" basic>
             <Input
               type="number"
@@ -68,6 +72,11 @@ class BlocksComponent extends Component {
                 to={`/${block.number}`}
                 active={selectedBlock && block.hash === selectedBlock.hash}
               >
+                <Image
+                  inline
+                  rounded
+                  src={blockies.createDataURL({ seed: block.hash })}
+                />
                 <Step.Content>
                   <Step.Title>Block {block.number}</Step.Title>
                   <Step.Description>

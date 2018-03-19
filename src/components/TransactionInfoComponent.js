@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Segment, Header, Table } from "semantic-ui-react";
+import { Segment, Header, Table, Image } from "semantic-ui-react";
+import blockies from "ethereum-blockies-png";
 import getTransaction from "../actions/transactions";
 
 // Shows transaction details
@@ -46,11 +47,18 @@ class TransactionInfoComponent extends Component {
           style={{ overflow: "auto", maxHeight: 550 }}
         >
           <Header as="h2" textAlign="center">
-            {transaction
-              ? `Transaction ${transaction.transactionIndex} of block #${
+            {transaction ? (
+              <>
+                <Image
+                  inline
+                  rounded
+                  src={blockies.createDataURL({ seed: transaction.hash })}
+                />
+                Transaction {transaction.transactionIndex} of block #{
                   transaction.blockNumber
-                }`
-              : null}
+                }
+              </>
+            ) : null}
           </Header>
           <Table compact size="small">
             <Table.Body>
