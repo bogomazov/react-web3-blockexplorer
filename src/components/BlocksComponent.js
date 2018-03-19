@@ -62,7 +62,7 @@ class BlocksComponent extends Component {
             as={Step.Group}
             duration={200}
             animation="fade"
-            size="mini"
+            size="small"
           >
             {blocks.map(block => (
               <Step
