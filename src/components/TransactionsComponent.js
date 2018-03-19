@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Segment, Header, Table } from "semantic-ui-react";
@@ -15,10 +15,10 @@ const TransactionsComponent = ({ block }) => {
         </Header>
         <Table compact size="small">
           <Table.Body>
-            {block.transactions.map(transaction => (
+            {block.transactions.map((transaction, i) => (
               <Table.Row key={transaction}>
                 <Table.Cell>
-                  <Link to={`/${block.hash}/transactions/${transaction}`}>
+                  <Link to={`/${block.number}/transactions/${i}`}>
                     {transaction}
                   </Link>
                 </Table.Cell>

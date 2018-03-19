@@ -1,10 +1,10 @@
 import { GET_TRANSACTION } from "../types";
 
 // Fetching transaction
-export default transactionHash => (dispatch, getState) => {
+export default (blockNumber, transactionNumber) => (dispatch, getState) => {
   const { eth } = getState().web3.web3Instance;
   eth
-    .getTransaction(transactionHash)
+    .getTransactionFromBlock(blockNumber, transactionNumber)
     .then(transaction =>
       dispatch({ type: GET_TRANSACTION, payload: transaction }),
     );

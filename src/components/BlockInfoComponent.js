@@ -7,20 +7,39 @@ import { getBlock } from "../actions/blocks";
 
 // Component which shows block information
 class BlockInfoComponent extends Component {
+  state = {
+    loading: true,
+  };
+
   componentDidMount() {
     this.props.getBlock(this.props.match.params.block);
+    this.state.loading = false;
+  }
+
+  componentWillUpdate({ match }) {
+    const { block, match: prevMatch } = this.props;
+    if (!block || prevMatch.params.block !== match.params.block) {
+      this.state.loading = true;
+    } else {
+      this.state.loading = false;
+    }
   }
 
   componentDidUpdate() {
-    const { match, getBlock } = this.props;
-    getBlock(match.params.block);
+    const { getBlock, match } = this.props;
+    if (this.state.loading) {
+      getBlock(match.params.block);
+    }
   }
 
   render() {
     const { block } = this.props;
     return (
       <>
-        <Segment style={{ overflow: "auto", maxHeight: 550 }}>
+        <Segment
+          loading={this.state.loading}
+          style={{ overflow: "auto", maxHeight: 550 }}
+        >
           <Header as="h2" textAlign="center">
             Block #{block ? block.number : null}
           </Header>
@@ -74,7 +93,7 @@ class BlockInfoComponent extends Component {
                 <Table.Cell>Transactions:</Table.Cell>
                 <Table.Cell>
                   {block ? (
-                    <Link to={`/${block.hash}/transactions`}>
+                    <Link to={`/${block.number}/transactions`}>
                       {block.transactions.length} (Click to show all)
                     </Link>
                   ) : null}

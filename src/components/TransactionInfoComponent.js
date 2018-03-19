@@ -2,24 +2,49 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Segment, Header, Table } from "semantic-ui-react";
-import getTransactions from "../actions/transactions";
+import getTransaction from "../actions/transactions";
 
 // Shows transaction details
 class TransactionInfoComponent extends Component {
+  state = {
+    loading: true,
+  };
+
   componentDidMount() {
-    this.props.getTransactions(this.props.match.params.transaction);
+    this.props.getTransaction(
+      this.props.match.params.block,
+      this.props.match.params.transaction,
+    );
+    this.state.loading = false;
+  }
+
+  componentWillUpdate({ match }) {
+    const { transaction, match: prevMatch } = this.props;
+    if (
+      !transaction ||
+      prevMatch.params.transaction !== match.params.transaction
+    ) {
+      this.state.loading = true;
+    } else {
+      this.state.loading = false;
+    }
   }
 
   componentDidUpdate() {
-    const { getTransactions, match } = this.props;
-    getTransactions(match.params.transaction);
+    const { getTransaction, match } = this.props;
+    if (this.state.loading) {
+      getTransaction(match.params.block, match.params.transaction);
+    }
   }
 
   render() {
     const { transaction } = this.props;
     return (
       <>
-        <Segment style={{ overflow: "auto", maxHeight: 550 }}>
+        <Segment
+          loading={this.state.loading}
+          style={{ overflow: "auto", maxHeight: 550 }}
+        >
           <Header as="h2" textAlign="center">
             {transaction
               ? `Transaction ${transaction.transactionIndex} of block #${
@@ -65,14 +90,15 @@ TransactionInfoComponent.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       transaction: PropTypes.string.isRequired,
+      block: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  getTransactions: PropTypes.func.isRequired,
+  getTransaction: PropTypes.func.isRequired,
   transaction: PropTypes.shape({
     hash: PropTypes.string.isRequired,
   }),
 };
 
 export default connect(({ transaction }) => ({ transaction }), {
-  getTransactions,
+  getTransaction,
 })(TransactionInfoComponent);

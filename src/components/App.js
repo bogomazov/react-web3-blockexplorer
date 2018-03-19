@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { hot } from "react-hot-loader";
 import { Grid } from "semantic-ui-react";
 import { Route, withRouter } from "react-router-dom";

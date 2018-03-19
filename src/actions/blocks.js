@@ -45,12 +45,12 @@ export const nextPage = () => ({ type: NEXT_PAGE });
 export const previousPage = () => ({ type: PREVIOUS_PAGE });
 
 // Fetching blocks by one
-export const getBlock = blockHash => (dispatch, getState) => {
+export const getBlock = blockNumber => (dispatch, getState) => {
   const { eth } = getState().web3.web3Instance;
-  eth.getBlock(blockHash).then(block =>
+  eth.getBlock(blockNumber).then(block => {
     dispatch({
       type: SELECT_BLOCK,
       payload: block,
-    }),
-  );
+    });
+  });
 };
