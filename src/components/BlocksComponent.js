@@ -55,7 +55,7 @@ class BlocksComponent extends Component {
               type="number"
               icon="search"
               placeholder="Search for block..."
-              onChange={(e, { value }) => this.debounceSearch(`/${value}`)}
+              onChange={(e, { value }) => this.debounceSearch(value)}
             />
           </Segment>
           <Transition.Group
