@@ -12,3 +12,4 @@ export const getVisibleBlocks = createSelector(
     return blocks.slice(index, index + BLOCKS_PER_PAGE);
   },
 );
+хорошо, что разделил логику и достойное применение селекторам

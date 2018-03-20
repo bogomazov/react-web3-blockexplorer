@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { Segment, Header, Table, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import blockies from "ethereum-blockies-png";
-
+молодец, что проверил и заюзал подобное решение
 // Shows all transactions of the block
 const TransactionsComponent = ({ block }) => {
+  по наименованию, если разделять компоненты от контейнеров, можно было бы избежать длинных именований :)
   if (!block) return null;
   return (
     <div>

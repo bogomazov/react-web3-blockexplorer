@@ -10,3 +10,4 @@ export default () => {
     .getBlockNumber()
     .then(number => store.dispatch({ type: INITIAL_BLOCK, payload: number })); // Saving last block in store (needed for pagination)
 };
+разделение на utils +

@@ -11,6 +11,7 @@ import TransactionInfoComponent from "./TransactionInfoComponent";
 const App = () => {
   return (
     <>
+    ^ оригинально
       <Helmet>
         <title>REACT-WEB3-BLOCKEXPLORER</title>
       </Helmet>
@@ -37,6 +38,9 @@ const App = () => {
           <Grid.Column width={5}>
             <Route
               path="/:block/transactions/:transaction"
+              интересная задумка, но если TransactionInfoComponent - логически часть TransactionsComponent (что в свою очередь относится к BlockInfoComponent),
+              всю эту радость можно было бы инкапсулировать (имея древовидную архитектуру, вместо плоской) и соответсвенно передавать через parent component
+              Если ты опытный - скорее всего тебе это в первую очередь в голову пришло, решил по-экспериментировать? 
               component={TransactionInfoComponent}
             />
           </Grid.Column>

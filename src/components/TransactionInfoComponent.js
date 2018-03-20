@@ -62,6 +62,7 @@ class TransactionInfoComponent extends Component {
           </Header>
           <Table compact size="small">
             <Table.Body>
+              ещё одна прелесть с копипастом :)
               <Table.Row>
                 <Table.Cell>From:</Table.Cell>
                 <Table.Cell>{transaction ? transaction.from : null}</Table.Cell>

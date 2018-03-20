@@ -15,7 +15,7 @@ export default (
     case GET_LAST_BLOCKS:
       return { ...state, blocksArr: [...action.payload, ...state.blocksArr] };
     case SELECT_BLOCK:
-      return { ...state, selectedBlock: action.payload };
+      return { ...state, selectedBlock: action.payload - что же у нас в этом payload'e? и как в этом удостоверится? и selectedBlock передаем - "очень хорошая идея" :) };
     case ADD_BLOCK:
       return { ...state, blocksArr: [...state.blocksArr, action.payload] };
     case NEXT_PAGE:

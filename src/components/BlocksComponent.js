@@ -47,6 +47,7 @@ class BlocksComponent extends Component {
           basic
           loading={isLoading}
           style={{ padding: "3em 0em", width: "100%" }}
+          стили хардкодим в компонентах, ммм
           textAlign="center"
         >
           <Header size="huge">REACT-WEB3-BLOCKEXPLORER</Header>
@@ -119,6 +120,7 @@ BlocksComponent.propTypes = {
     hash: PropTypes.string.isRequired,
   }),
   push: PropTypes.func.isRequired,
+  это правильно, хоть и выглядит больно составлять для каждого такое, а что если архитектура через routing перестанет быть актуальной? :)
 };
 
 export default connect(
@@ -133,5 +135,6 @@ export default connect(
     previousPage,
     listenToNewBlocks,
     push,
+    добавлять dispatch для каждого с ручным импортом и рефакторинг не находишь напряжным? :) на эту тему можно было бы подискутировать, но данное решение концептуально правильное
   },
 )(BlocksComponent);

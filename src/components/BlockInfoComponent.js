@@ -55,6 +55,7 @@ class BlockInfoComponent extends Component {
           </Header>
           <Table compact size="small">
             <Table.Body>
+              это что за пи*дец с копипастом ниже? :)
               <Table.Row>
                 <Table.Cell>Hash:</Table.Cell>
                 <Table.Cell>{block ? block.hash : null}</Table.Cell>

@@ -19,15 +19,16 @@ export const getLastBlocks = (amount = BLOCKS_PER_PAGE) => (
   const initialBlockNumber = state.web3.initialBlock;
   Promise.all(
     _.times(amount, i => eth.getBlock(initialBlockNumber - blocksFetched - i)),
+    web3 - eth не позволяет запросить несколько блоков сразу? если нет - то молодец :)
   ).then(blocks => {
     dispatch({
       type: GET_LAST_BLOCKS,
-      payload: blocks.reverse(),
+      payload: blocks.reverse() - было бы не плохо сортировать по таймстампу и в редюсер поместить, но то таке,
     });
   });
 };
 
-// Action creator which dispatch action on every new block from network
+// Action creator which dispatches action on every new block from network
 export const listenToNewBlocks = () => (dispatch, getState) => {
   const { eth } = getState().web3.web3Instance;
   eth
